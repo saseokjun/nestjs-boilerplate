@@ -2,8 +2,7 @@ import { Controller, Post, UseGuards, Req, Get, Res, HttpCode, Redirect } from '
 import { LocalAuthGuard } from '../guards/local-auth.guard';
 import { Request, Response } from 'express';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UserRank } from 'common/types/userRank';
-import { HttpDecorator } from 'decorators/http.decorator';
+import { SessionUser } from 'common/types/sessionUser';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -16,8 +15,8 @@ export class AuthController {
     summary: '로그인',
   })
   @Post('login')
-  async login() {
-    return Redirect('/', 302);
+  async login(@Req() req: Request): Promise<SessionUser> {
+    return req.user;
   }
 
   @Post('logout')

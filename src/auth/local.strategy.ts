@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
-import { UserEntity } from 'user/user.entity';
 import { LoginUserCommand } from 'auth/command/login-user.command';
 import { CommandBus } from '@nestjs/cqrs';
+import { SessionUser } from 'common/types/sessionUser';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
@@ -14,13 +14,14 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     });
   }
 
-  async validate(email: string, password: string): Promise<UserEntity> {
+  async validate(email: string, password: string): Promise<SessionUser> {
     const command = new LoginUserCommand(email, password);
 
     const user = await this.commandBus.execute(command);
     if (!user) {
       throw new BadRequestException();
     }
-    return user;
+    const { password: pwd, createAt, updateAt, company, ...rest } = user;
+    return rest;
   }
 }
