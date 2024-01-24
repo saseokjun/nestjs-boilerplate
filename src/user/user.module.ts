@@ -10,7 +10,6 @@ import { UpdateUserRankHandler } from './command/update-user-rank.handler';
 import { UpdateUserHandler } from './command/update-user.handler';
 import { DeleteUserHandler } from './command/delete-user.handler';
 import { UserUpdatedEventHandler } from './event/user-updated.event.handler';
-import { UserDeletedEventHandler } from './event/user-deleted.event.handler';
 
 const commandHandlers = [
   CreateUserHandler,
@@ -22,7 +21,7 @@ const commandHandlers = [
 
 const queryHandlers = [GetUserHandler];
 
-const eventHandlers = [UserUpdatedEventHandler, UserDeletedEventHandler];
+const eventHandlers = [UserUpdatedEventHandler];
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([UserEntity])],
