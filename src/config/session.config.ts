@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as session from 'express-session';
+import session from 'express-session';
 import RedisStore from 'connect-redis';
 import { Redis } from 'ioredis';
-import * as passport from 'passport';
+import passport from 'passport';
 import config from './constant.config';
 
 export function setupSession(app: INestApplication): void {
