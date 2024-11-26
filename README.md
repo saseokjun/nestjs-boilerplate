@@ -11,6 +11,7 @@
 
 ## 특징
 
+- CQRS 패턴 적용
 - 세션기반 로그인
 - 유저 권한을 4단계(ADMIN, OWNER, MANAGER, MEMBER)로 세분화
 
@@ -24,7 +25,7 @@
    `npm run db:gen`
 4. Migration:run  
    `npm run db:up`
-5. Seed  
+5. 최초 유저(관리자) 생성
    `npm run db:seed`
 6. API 서버 실행  
    `npm run dev`

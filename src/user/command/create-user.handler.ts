@@ -22,7 +22,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    await this.userRepository.save({
+    await this.userRepository.insert({
       id: uuid(),
       name,
       password: hashedPassword,

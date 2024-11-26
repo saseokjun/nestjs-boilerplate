@@ -2,7 +2,7 @@ import { Column, Entity, Index } from 'typeorm';
 import { AbstractEntity } from 'common/abstract.entity';
 import { UserRank } from 'common/types/userRank';
 
-@Entity('user')
+@Entity('users')
 @Index(['email'], { unique: true })
 export class UserEntity extends AbstractEntity {
   @Column()

@@ -6,7 +6,7 @@ import { UserRank } from 'common/types/userRank';
 
 export default class UserSeeder implements Seeder {
   public async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
-    await dataSource.query('TRUNCATE "user" RESTART IDENTITY CASCADE;');
+    await dataSource.query('TRUNCATE users RESTART IDENTITY CASCADE;');
 
     const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 12);
 

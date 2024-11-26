@@ -3,18 +3,22 @@ import type { Config } from 'jest';
 const config: Config = {
   moduleFileExtensions: ['js', 'ts', 'json'],
   moduleNameMapper: {
-    '^common/(.*)': '<rootDir>/common/$1',
-    '^decorators/(.*)': '<rootDir>/decorators/$1',
-    '^guards/(.*)': '<rootDir>/guards/$1',
+    '^src/(.*)$': '<rootDir>/src/$1',
+    '^user/(.*)$': '<rootDir>/src/user/$1',
+    '^common/(.*)': '<rootDir>/src/common/$1',
+    '^decorators/(.*)': '<rootDir>/src/decorators/$1',
+    '^guards/(.*)': '<rootDir>/src/guards/$1',
   },
-  rootDir: 'src',
+  rootDir: '.',
   testRegex: '.*\\.spec\\.ts$',
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
-  collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  coverageDirectory: './coverage',
+  // collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.(t|j)s'],
+  // coveragePathIgnorePatterns: ['src/migrations'],
   testEnvironment: 'node',
 };
 
-module.exports = config;
+export default config;
